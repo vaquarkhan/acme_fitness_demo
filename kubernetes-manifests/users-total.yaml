@@ -39,7 +39,7 @@ spec:
       - name: acmefit-users-data
         emptyDir: {}
       containers:
-      - image: springcloudservices/fitness-users:latest
+      - image: springcloudservices/fitness-users:wavefront
         imagePullPolicy: "Always"
         name: users
         env:
@@ -65,10 +65,10 @@ spec:
             secretKeyRef:
               name: users-redis-pass
               key: password
-        - name: JAEGER_AGENT_HOST
-          value: 'localhost'
-        - name: JAEGER_AGENT_PORT
-          value: '6831'
+        - name: WAVEFRONT_SERVER
+          value:
+        - name: WAVEFRONT_TOKEN
+          value:
         ports:
         - containerPort: 8083
           name: users
