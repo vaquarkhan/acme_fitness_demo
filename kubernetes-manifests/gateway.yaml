@@ -1,8 +1,21 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: wavefront-secret
+data:
+  wavefront.api-token: ""
+  wavefront.uri: ""
+---
 apiVersion: "tanzu.vmware.com/v1"
 kind: SpringCloudGateway
 metadata:
   name: gateway-acme
 spec:
+  metrics:
+    secret: wavefront-secret
+  tracing:
+    secret: wavefront-secret
   api:
     serverUrl: http://gateway-acme.spring.animalrescue.online
     title: "ACME Fitness Gateway"
