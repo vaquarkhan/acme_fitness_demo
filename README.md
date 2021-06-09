@@ -24,6 +24,8 @@ Install [Spring Cloud Gateway for kubernetes](https://docs.pivotal.io/scg-k8s/1-
 
 ```
 echo 'password=<value>' > kubernetes-manifests/.env.secret
+echo 'wavefront.api-token=<token>
+wavefront.uri=<uri>' > kubernetes-manifests/.env.wavefront.secret
 kustomize build kubernetes-manifests/ | kubectl apply -f -
 ```
 

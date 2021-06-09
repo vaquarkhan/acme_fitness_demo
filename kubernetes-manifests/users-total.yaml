@@ -66,9 +66,15 @@ spec:
               name: users-redis-pass
               key: password
         - name: WAVEFRONT_SERVER
-          value:
+          valueFrom:
+            secretKeyRef:
+              name: wavefront-secret
+              key: wavefront.uri
         - name: WAVEFRONT_TOKEN
-          value:
+          valueFrom:
+            secretKeyRef:
+              name: wavefront-secret
+              key: wavefront.api-token
         ports:
         - containerPort: 8083
           name: users

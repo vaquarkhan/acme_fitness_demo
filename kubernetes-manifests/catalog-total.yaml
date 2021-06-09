@@ -39,7 +39,7 @@ spec:
       - name: acmefit-catalog-data
         emptyDir: {}
       containers:
-      - image: gcr.io/vmwarecloudadvocacy/acmeshop-catalog:latest
+      - image: springcloudservices/fitness-catalog:wavefront
         imagePullPolicy: "Always"
         name: catalog
         env:
@@ -62,10 +62,16 @@ spec:
           value: 'users'
         - name: USERS_PORT
           value: '8083'
-        - name: JAEGER_AGENT_HOST
-          value: 'localhost'
-        - name: JAEGER_AGENT_PORT
-          value: '6831'
+        - name: WAVEFRONT_SERVER
+          valueFrom:
+            secretKeyRef:
+              name: wavefront-secret
+              key: wavefront.uri
+        - name: WAVEFRONT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: wavefront-secret
+              key: wavefront.api-token
         ports:
         - containerPort: 8082
           name: catalog

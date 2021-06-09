@@ -14,6 +14,8 @@ To deploy everything into the `default` namespace, run the following commands:
 
 ```
 echo 'password=<value>' > kubernetes-manifests/.env.secret
+echo 'wavefront.api-token=<token>
+wavefront.uri=<uri>' > kubernetes-manifests/.env.wavefront.secret
 kustomize build kubernetes-manifests/ | kubectl apply -f -
 ```
 

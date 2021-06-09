@@ -18,6 +18,9 @@ secretGenerator:
 - name: users-redis-pass
   envs:
   - .env.secret
+- name: wavefront-secret
+  envs:
+  - .env.wavefront.secret
 
 generatorOptions:
   disableNameSuffixHash: true
